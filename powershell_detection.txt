@@ -1,0 +1,3 @@
+index=* sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+| rex field=_raw "<Data Name='CommandLine'>(?<CommandLine>[^<]+)</Data>"
+| search CommandLine="*powershell*"
