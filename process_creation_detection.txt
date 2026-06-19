@@ -1,0 +1,3 @@
+index=* sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+| rex field=_raw "<EventID>(?<EventID>\d+)</EventID>"
+| search EventID=1
