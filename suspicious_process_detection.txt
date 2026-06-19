@@ -1,0 +1,3 @@
+index=* sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+| rex field=_raw "<Data Name='Image'>(?<Image>[^<]+)</Data>"
+| search Image="*powershell.exe*" OR Image="*cmd.exe*" OR Image="*rundll32.exe*" OR Image="*regsvr32.exe*"
