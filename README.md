@@ -204,7 +204,20 @@ index=main sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 | stats count by EventID
 | sort -count
 ```
+Alert 1: PowerShell Execution
+index=* sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+| rex field=_raw "<Data Name='CommandLine'>(?<CommandLine>[^<]+)</Data>"
+| search CommandLine="*powershell*"
 
+Alert 2: Reconnaissance Commands
+index=* sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+| rex field=_raw "<Data Name='CommandLine'>(?<CommandLine>[^<]+)</Data>"
+| search CommandLine="*whoami*" OR CommandLine="*ipconfig*" OR CommandLine="*systeminfo*" OR CommandLine="*net user*"
+
+Alert 3: Suspicious Processes
+index=* sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+| rex field=_raw "<Data Name='Image'>(?<Image>[^<]+)</Data>"
+| search Image="*powershell.exe*" OR Image="*cmd.exe*" OR Image="*rundll32.exe*" OR Image="*regsvr32.exe*"
 ---
 
 ## Troubleshooting
