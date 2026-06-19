@@ -22,7 +22,7 @@ A hands-on Security Operations Center (SOC) home lab built from scratch on a Win
 
 | Tool | Purpose |
 |------|---------|
-| Windows 10 VM | Target endpoint being monitored |
+| Windows 11 VM | Target endpoint being monitored |
 | Sysmon v15 (Sysinternals) | Endpoint telemetry and event logging |
 | Splunk Universal Forwarder 10.4 | Log collection and forwarding agent |
 | Splunk Enterprise 9.x | SIEM — indexing, searching, dashboards |
